@@ -22,5 +22,18 @@ soup = BeautifulSoup(resp.data,features="lxml")
 #     print(tag.name)
 
 # i can get names and quotes, but for quotes with <span id= and <script type=, i also get useless stuff
-# for div in soup.find_all('div', class_='quoteText'):
-#     print(div.text)
+for quoteDiv in soup.find_all('div', class_='quoteText'):
+  quoteAuthor = ''
+  quoteText = ''
+  for entry in quoteDiv.contents:
+    print(entry)
+    print(entry.name)
+    if entry.name is None:
+      quoteText += entry
+    if entry.name == 'span':
+      quoteAuthor = entry.text
+      break
+    break
+  #print(quoteText, quoteAuthor)
+
+
